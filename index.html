@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Movie Store</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header>
+            <h1>🎥 MovieIn</h1>
+            <nav>
+                <button onclick="showSection('catalog')">Catalog</button>
+                <button onclick="showSection('cart')">Cart</button>
+                <button onclick="showSection('checkout')">Checkout</button>
+                <button onclick="showSection('contact')">Contact Us</button> <!-- Added Contact Us button -->
+            </nav>
+        </header>
+
+        <!-- Movie Catalog -->
+        <section id="catalog" class="section active">
+            <!-- Search Box -->
+            <div class="search-container">
+                <input type="text" id="search-bar" placeholder="Search for a movie..." oninput="filterMovies()">
+            </div>
+            <div class="movies">
+                <!-- Movie items will be dynamically added here -->
+            </div>
+        </section>
+
+        <!-- Cart Section -->
+        <section id="cart" class="section">
+            <h2>Your Cart</h2>
+            <div class="cart-items">
+                <p>Your cart is empty!</p>
+            </div>
+            <p id="cart-total">Total: 0 BDT</p>
+            <button class="btn" onclick="showSection('checkout')">Proceed to Checkout</button>
+        </section>
+
+      <!-- Checkout Section -->
+<section id="checkout" class="section">
+    <div class="checkout-message">
+        <p>
+            নিচের দেওয়া নাম্বারে Total Amount (Payment) ( Send Money) করে আপনার বিকাশ নম্বর এবং Transaction ID add করে Order Place করুন.
+            <br>
+            bKash Number: 01929894215
+        </p>
+    </div>
+
+    <!-- Checkout Form -->
+    <form id="checkout-form" action="https://formsubmit.co/moviein64@gmail.com" method="POST" onsubmit="handleCheckout(event)">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required />
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="mobile">Mobile Number:</label>
+        <input type="text" id="mobile" name="mobile" required />
+
+        <label for="bkash">bKash Number:</label>
+        <input type="text" id="bkash" name="bkash" required />
+
+        <label for="transaction-id">Transaction ID:</label>
+        <input type="text" id="transaction-id" name="transaction-id" required />
+
+        <label for="movies">Ordered Movies:</label>
+        <textarea id="movies" name="movies" required readonly></textarea>
+
+        <button type="submit" class="btn">Place Order</button>
+    </form>
+
+    <!-- Order Confirmation -->
+    <div id="order-confirmation" style="display: none;">
+        <p>Thank you for your order! We will process it soon.</p>
+    </div>
+</section>
+>
+
+        <!-- Contact Info Section -->
+        <section id="contact" class="section">
+            <h2>Contact Us</h2>
+            <p>If you have any questions or need further assistance, feel free to reach out to us.</p>
+
+            <!-- Contact Info -->
+            <div class="contact-info">
+                <p><strong>Email:</strong> moviein64@gmail.com</p>
+                
+                <p><strong>Address:</strong> Dhaka, Bangladesh</p>
+            </div>
+
+            <!-- Contact Form -->
+            <form id="contact-form" action="https://formsubmit.co/moviein64@gmail.com" method="POST" onsubmit="handleContactForm(event)">
+                <label for="contact-name">Name:</label>
+                <input type="text" id="contact-name" name="name" required />
+            
+                <label for="contact-email">Email:</label>
+                <input type="email" id="contact-email" name="email" required />
+            
+                <label for="contact-message">Message:</label>
+                <textarea id="contact-message" name="message" required></textarea>
+            
+                <button type="submit" class="btn">Send Message</button>
+            </form>
+            
+            <!-- Confirmation Message -->
+            <div id="contact-confirmation" style="display: none;">
+                <p>Your message has been sent successfully. We will get back to you shortly.</p>
+            </div>
+        </section>
+
+        <!-- Modal for Movie Details -->
+        <div id="movie-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn" onclick="closeModal()">&times;</span>
+                <img id="modal-image" src="" alt="Movie Image">
+                <h3 id="modal-name"></h3>
+                <p id="modal-price"></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
